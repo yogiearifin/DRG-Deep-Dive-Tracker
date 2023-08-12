@@ -1,5 +1,7 @@
+"use client";
 import Image from "next/image";
 import { Loader } from "./component/Loader";
+import { useEffect, useState } from "react";
 
 type DeepDiveDataType = {
   endTime: string;
@@ -19,9 +21,22 @@ type DeepDiveDataType = {
   }[];
 };
 
-export default async function Home() {
-  const res = await fetch("https://drgapi.com/v1/deepdives");
-  const data: DeepDiveDataType = await res.json();
+export default function Home() {
+  const [data, setData] = useState<DeepDiveDataType>({
+    endTime: "",
+    startTime: "",
+    variants: [],
+  });
+  const getData = async () => {
+    const res = await fetch("https://drgapi.com/v1/deepdives");
+    const fetchData: DeepDiveDataType = await res.json();
+    setData(fetchData);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   const renderIcon = () => {
     return (
       <Image
@@ -108,6 +123,36 @@ export default async function Home() {
         />
       );
     }
+    if (mission.toLowerCase().includes("escort duty")) {
+      return (
+        <Image
+          src={require("./media/missionIcons/dotty.png")}
+          alt={mission}
+          width={24}
+          height={24}
+        />
+      );
+    }
+    if (mission.toLowerCase().includes("industrial sabotage")) {
+      return (
+        <Image
+          src={require("./media/missionIcons/sabotage.png")}
+          alt={mission}
+          width={24}
+          height={24}
+        />
+      );
+    }
+    if (mission.toLowerCase().includes("aquarq")) {
+      return (
+        <Image
+          src={require("./media/missionIcons/aquarq.png")}
+          alt={mission}
+          width={24}
+          height={24}
+        />
+      );
+    }
   };
   return (
     <main className="flex min-h-screen flex-col items-center flex-wrap p-4">
@@ -120,7 +165,7 @@ export default async function Home() {
         </div>
         {renderIcon()}
       </div>
-      {data ? (
+      {data.variants.length ? (
         <div>
           <div>
             <p className="text-lg text-center">
