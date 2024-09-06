@@ -1,3 +1,7 @@
+import { AnomalyType } from "./Anomaly";
+import { MissionType } from "./Missions";
+import { WarningType } from "./Warning";
+
 export type DeepDiveDataType = {
     endTime: string;
     startTime: string;
