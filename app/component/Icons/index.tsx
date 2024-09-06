@@ -1,6 +1,6 @@
-import { MissionType } from "./interface/missions";
-import { AnomalyType } from "./interface/Anomaly";
-import { WarningType } from "./interface/Warning";
+import { MissionType } from "@/app/interface/Missions";
+import { AnomalyType } from "@/app/interface/Anomaly";
+import { WarningType } from "@/app/interface/Warning";
 import Image from "next/image";
 
 export const Icons = (item: MissionType | AnomalyType | WarningType | string) => {

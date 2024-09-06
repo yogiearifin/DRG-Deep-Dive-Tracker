@@ -10,7 +10,9 @@ export default function Home() {
 
   useEffect(() => {
     getData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  
   return (
     <main className="flex min-h-screen flex-col items-center flex-wrap p-4">
       <div className="flex my-4">
