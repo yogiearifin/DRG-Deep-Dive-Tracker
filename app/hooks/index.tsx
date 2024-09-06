@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import { DeepDiveDataType } from "./interface/DeepDiveData";
+import { DeepDiveDataType } from '../interface/DeepDiveData';
 
 export const UseDeepDive = () => {
     const [data, setData] = useState<DeepDiveDataType>({
